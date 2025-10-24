@@ -13,10 +13,10 @@ let arr=[]
 
 postBtn.addEventListener("click", ()=>{
     if(!name.value){
-       error1.innerHTML="please enter your name";
+       error1.innerHTML="please enter your name..!";
 
     }else if(!caption.value){
-          error2.innerHTML="please enter your caption";
+          error2.innerHTML="please enter your caption..!";
 
     }else{
          error1.innerHTML=""
@@ -24,6 +24,7 @@ postBtn.addEventListener("click", ()=>{
   
         arr.push({
             Name: name.value,
+
             caption: caption.value
         })
         allpost.innerHTML="";
@@ -47,8 +48,25 @@ function display(){
                     <p class="card-text">${item.caption}</p>
                     <a href="#" class="btn btn-primary"><i class="fa-solid fa-file-pen fa-lg"
                             style="color: #f9f9f9;"></i></a>
-                    <a href="#" class="btn btn-danger"><i class="fa-solid fa-trash fa-lg"></i></a>
+                    <a href="#" class="btn btn-danger deletebtn"><i class="fa-solid fa-trash fa-lg"></i></a>
                 </div>
             </div>`
     })
+
+
+    let deletebtn=document.querySelectorAll(".deletebtn")
+    let cvtdeletebtn=Array.from(deletebtn)
+    cvtdeletebtn.map((item,index)=>{
+        item.addEventListener("click",()=>{
+            arr.splice(index,1)
+             allpost.innerHTML="";
+
+            display();
+        })
+    })
+
+    
+
+
+
 }
