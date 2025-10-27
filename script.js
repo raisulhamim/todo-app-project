@@ -51,6 +51,14 @@ updateBtn.addEventListener("click", ()=>{
         caption.value=""
           postBtn.style.display="inline-block"
             updateBtn.style.display="none"
+             let allDeleteBtn=document.querySelectorAll(".deletebtn");
+            allDeleteBtn.forEach(btn =>{
+                btn.disabled = false;
+                btn.style.opacity="1";
+                btn.style.cursor="pointer";
+                 btn.style.pointerEvents="auto";
+
+            })
 
 
     })
@@ -93,6 +101,15 @@ function display(){
             store=index
             postBtn.style.display="none"
             updateBtn.style.display="inline-block"
+            let allDeleteBtn=document.querySelectorAll(".deletebtn");
+            allDeleteBtn.forEach(btn =>{
+                btn.disabled = true;
+                btn.style.opacity="0.5";
+                btn.style.cursor="not-allowed";
+                btn.style.pointerEvents="none";
+
+            })
+
     })
   })
 
