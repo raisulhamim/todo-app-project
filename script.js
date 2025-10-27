@@ -2,12 +2,13 @@ let allpost=document.querySelector(".allpost")
 let name=document.querySelector("#exampleFormControlInput1")
 let caption=document.querySelector("#exampleFormControlTextarea1")
 let postBtn=document.querySelector(".postBtn")
+let updateBtn=document.querySelector(".updateBtn")
 let error1=document.querySelector(".error1")
 let error2=document.querySelector(".error2")
 
 
 let arr=[]
-
+let store;
 
 
 
@@ -37,6 +38,24 @@ postBtn.addEventListener("click", ()=>{
     }
 
     })
+updateBtn.addEventListener("click", ()=>{
+    
+          arr[store].Name = name.value,
+
+         arr[store].caption= caption.value
+   
+        allpost.innerHTML="";
+
+        display();
+        name.value=""
+        caption.value=""
+          postBtn.style.display="inline-block"
+            updateBtn.style.display="none"
+
+
+    })
+
+
 
 
 function display(){
@@ -46,7 +65,7 @@ function display(){
                 <div class="card-body">
                     <h5 class="card-title">${item.Name}</h5>
                     <p class="card-text">${item.caption}</p>
-                    <a href="#" class="btn btn-primary"><i class="fa-solid fa-file-pen fa-lg"
+                    <a href="#" class="btn btn-primary editbtn"><i class="fa-solid fa-file-pen fa-lg"
                             style="color: #f9f9f9;"></i></a>
                     <a href="#" class="btn btn-danger deletebtn"><i class="fa-solid fa-trash fa-lg"></i></a>
                 </div>
@@ -65,7 +84,17 @@ function display(){
         })
     })
 
-    
+      let editbtn=document.querySelectorAll(".editbtn")
+    let cvtebtn=Array.from(editbtn)
+    cvtebtn.map((item,index)=>{
+        item.addEventListener("click",()=>{
+            name.value=arr[index].Name
+            caption.value=arr[index].caption
+            store=index
+            postBtn.style.display="none"
+            updateBtn.style.display="inline-block"
+    })
+  })
 
 
 
